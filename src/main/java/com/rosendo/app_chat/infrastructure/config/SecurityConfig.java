@@ -59,9 +59,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorizeHttpRequests -> authorizeHttpRequests
                                 .requestMatchers(
-                                        "/auth/signin",
+                                        "/auth/login",
                                         "/auth/refresh/**",
-                                        "/auth/user"
+                                        "/auth/register"
                                 ).permitAll()
                                 .requestMatchers("/**").authenticated()
                 )

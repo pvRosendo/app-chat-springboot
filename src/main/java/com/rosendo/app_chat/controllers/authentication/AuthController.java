@@ -20,13 +20,13 @@ public class AuthController {
     @Autowired
     UserServices userServices;
 
-    @PostMapping(value = "/user")
+    @PostMapping(value = "/register")
     public ResponseEntity<?> createAccount(@RequestBody CreateAccountCredentialsDto data) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userServices.createUser(data));
     }
 
     @SuppressWarnings("rawtypes")
-    @PostMapping(value = "/signin")
+    @PostMapping(value = "/login")
     public ResponseEntity signin(@RequestBody AccountCredentialsDto data) {
         if (authServices.checkIfParamsIsNotNull(data))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
