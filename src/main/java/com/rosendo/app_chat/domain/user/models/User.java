@@ -1,14 +1,13 @@
 package com.rosendo.app_chat.domain.user.models;
 
+import com.rosendo.app_chat.domain.profile.models.UserProfile;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_users")
@@ -17,17 +16,18 @@ public class User implements UserDetails, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    //TODO: verify in db after
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    @Column(name = "user_name", unique = true)
+    @Column(name = "user_name", unique = true, nullable = false, length=15)
     private String userName;
 
-    @Column(name = "full_name")
+    @Column(name = "full_name", length=100)
     private String fullName;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "account_non_expired")
@@ -49,6 +49,24 @@ public class User implements UserDetails, Serializable {
     private List<Permission> permissions;
 
     public User() {}
+
+    public User(
+            String userName,
+            String fullName,
+            String password,
+            Boolean accountNonExpired,
+            Boolean accountNonLocked,
+            Boolean credentialsNonExpired,
+            Boolean enabled
+    ) {
+        this.userName = userName;
+        this.fullName = fullName;
+        this.password = password;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
+    }
 
     public List<String> getRoles() {
         List<String> roles = new ArrayList<>();
@@ -93,11 +111,11 @@ public class User implements UserDetails, Serializable {
         return this.enabled;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

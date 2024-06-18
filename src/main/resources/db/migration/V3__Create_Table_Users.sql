@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `tb_users` (
-   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `id` BINARY(16) NOT NULL,
    `user_name` varchar(255) DEFAULT NULL,
    `password` varchar(255) DEFAULT NULL,
    `account_non_expired` bit(1) DEFAULT NULL,
