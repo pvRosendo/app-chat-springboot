@@ -1,6 +1,6 @@
 package com.rosendo.app_chat.infrastructure.config;
 
-import com.rosendo.app_chat.domain.models.WebSocketChatMessage;
+import com.rosendo.app_chat.domain.message.models.WebSocketChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;

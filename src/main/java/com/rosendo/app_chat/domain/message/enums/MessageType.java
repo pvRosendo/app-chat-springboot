@@ -1,4 +1,4 @@
-package com.rosendo.app_chat.domain.enums;
+package com.rosendo.app_chat.domain.message.enums;
 
 public enum MessageType {
   CHAT,

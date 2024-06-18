@@ -1,4 +1,4 @@
-package com.rosendo.app_chat.domain.models;
+package com.rosendo.app_chat.domain.message.models;
 
 public class WebSocketChatMessage {
   private String type;

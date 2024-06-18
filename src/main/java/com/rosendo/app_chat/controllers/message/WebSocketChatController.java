@@ -1,6 +1,6 @@
-package com.rosendo.app_chat.controllers;
+package com.rosendo.app_chat.controllers.message;
 
-import com.rosendo.app_chat.domain.models.WebSocketChatMessage;
+import com.rosendo.app_chat.domain.message.models.WebSocketChatMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -18,8 +18,10 @@ public class WebSocketChatController {
 
     @MessageMapping("/chat.newUser")
     @SendTo("/topic/javainuse")
-    public WebSocketChatMessage newUser(@Payload WebSocketChatMessage webSocketChatMessage,
-                                        SimpMessageHeaderAccessor headerAccessor) {
+    public WebSocketChatMessage newUser(
+            @Payload WebSocketChatMessage webSocketChatMessage,
+            SimpMessageHeaderAccessor headerAccessor)
+    {
         headerAccessor.getSessionAttributes().put("username", webSocketChatMessage.getSender());
         return webSocketChatMessage;
     }
