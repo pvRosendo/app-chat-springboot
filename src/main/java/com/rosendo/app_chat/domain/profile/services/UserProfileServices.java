@@ -5,11 +5,12 @@ import com.rosendo.app_chat.domain.profile.repositories.UserProfileRepository;
 import com.rosendo.app_chat.domain.user.models.User;
 import com.rosendo.app_chat.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class UserProfileServices {
@@ -36,6 +37,19 @@ public class UserProfileServices {
                 user
         );
         return userProfileRepository.save(profile);
+    }
+
+    public UserProfile getUserProfile(Long id) {
+        return userProfileRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Don't find profile with id: " + id));
+    }
+
+    public Page<UserProfile> getAllUserProfiles(Pageable pageable) {
+        return userProfileRepository.findAll(pageable);
+    }
+
+    public void deleteUserProfile(Long id) {
+        userProfileRepository.deleteById(id);
     }
 
     @Transactional
@@ -72,18 +86,5 @@ public class UserProfileServices {
 
         profile.setServerCount(serverCount);
         return userProfileRepository.save(profile);
-    }
-
-    public UserProfile getUserProfile(Long id) {
-        return userProfileRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Don't find profile with id: " + id));
-    }
-
-    public List<UserProfile> getAllUserProfiles() {
-        return userProfileRepository.findAll();
-    }
-
-    public void deleteUserProfile(Long id) {
-        userProfileRepository.deleteById(id);
     }
 }
