@@ -34,4 +34,45 @@ public class Guild implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private UserProfile owner;
+
+
+    public String getGuildName() {
+        return guildName;
+    }
+
+    public void setGuildName(String guildName) {
+        this.guildName = guildName;
+    }
+
+    public String getGuildDescription() {
+        return guildDescription;
+    }
+
+    public void setGuildDescription(String guildDescription) {
+        this.guildDescription = guildDescription;
+    }
+
+    public GuildType getType() {
+        return type;
+    }
+
+    public void setType(GuildType type) {
+        this.type = type;
+    }
+
+    public List<Channel> getChannels() {
+        return channels;
+    }
+
+    public void setChannels(List<Channel> channels) {
+        this.channels = channels;
+    }
+
+    public UserProfile getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserProfile owner) {
+        this.owner = owner;
+    }
 }
