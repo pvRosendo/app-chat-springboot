@@ -17,6 +17,7 @@ public class GuildServices {
 
     @Autowired
     private GuildRepository guildRepository;
+
     @Autowired
     private UserProfileRepository userProfileRepository;
 
@@ -30,11 +31,6 @@ public class GuildServices {
     }
 
     public Guild createGuild(Guild guild) {
-        return guildRepository.save(guild);
-    }
-
-    public Guild updateGuild(Guild guild) {
-        //TODO: changes
         return guildRepository.save(guild);
     }
 
