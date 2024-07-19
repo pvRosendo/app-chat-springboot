@@ -22,7 +22,7 @@ function connect(event) {
 }
 
 function connectionSuccess() {
-    stompClient.subscribe('/topic/javainuse', onMessageReceived);
+    stompClient.subscribe('/topic/appchat', onMessageReceived);
 
     stompClient.send("/app/chat.newUser", {}, JSON.stringify({
         sender : name,
